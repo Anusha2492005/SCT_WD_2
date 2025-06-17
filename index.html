@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <!-- Animated Background Elements -->
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        <div class="bg-element bg-element-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header Controls -->
+        <div class="header-controls">
+            <div class="control-group">
+                <button id="themeToggle" class="control-btn">
+                    <span class="icon">🌙</span>
+                </button>
+                <button id="settingsToggle" class="control-btn">
+                    <span class="icon">⚙️</span>
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button id="exportCsv" class="control-btn" disabled>
+                    <span class="icon">📄</span>
+                    CSV
+                </button>
+                <button id="exportJson" class="control-btn" disabled>
+                    <span class="icon">📋</span>
+                    JSON
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settingsPanel" class="settings-panel hidden">
+            <h3>Settings</h3>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <span>Sound</span>
+                    <button id="soundToggle" class="toggle-btn active">ON</button>
+                </div>
+                <div class="setting-item">
+                    <span>Milliseconds</span>
+                    <button id="millisecondsToggle" class="toggle-btn active">ON</button>
+                </div>
+                <div class="setting-item">
+                    <span>Auto Lap (s)</span>
+                    <input type="number" id="autoLapInput" placeholder="0" min="0" max="60">
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Main Stopwatch -->
+            <div class="timer-section">
+                <div class="timer-header">
+                    <h1>Precision Stopwatch</h1>
+                </div>
+
+                <!-- Main Display -->
+                <div id="mainDisplay" class="main-display">00:00.00</div>
+
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <div class="button-group">
+                        <button id="startPauseBtn" class="control-button start-button">
+                            <span class="button-icon">▶️</span>
+                        </button>
+                        <span class="button-label">START</span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="stopBtn" class="control-button stop-button" disabled>
+                            <span class="button-icon">⏹️</span>
+                        </button>
+                        <span class="button-label">PAUSE</span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="resetBtn" class="control-button reset-button">
+                            <span class="button-icon">🔄</span>
+                        </button>
+                        <span class="button-label">RESET</span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="lapBtn" class="control-button lap-button" disabled>
+                            <span class="button-icon">🚩</span>
+                        </button>
+                        <span class="button-label">LAP</span>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="splitBtn" class="control-button split-button" disabled>
+                            <span class="button-icon">✂️</span>
+                        </button>
+                        <span class="button-label">SPLIT</span>
+                    </div>
+                </div>
+
+                <!-- Session Management -->
+                <div class="session-management">
+                    <input type="text" id="sessionNameInput" placeholder="Session name">
+                    <button id="saveSessionBtn" class="save-session-btn" disabled>Save Session</button>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <!-- Statistics -->
+                <div id="statisticsPanel" class="panel hidden">
+                    <h2>📊 Performance Stats</h2>
+                    <div class="stats-content">
+                        <div class="stat-item">
+                            <span>Total Laps:</span>
+                            <span id="totalLaps">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Fastest Lap:</span>
+                            <span id="fastestLap">--:--</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Slowest Lap:</span>
+                            <span id="slowestLap">--:--</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Average Lap:</span>
+                            <span id="averageLap">--:--</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Total Time:</span>
+                            <span id="totalTime">00:00.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lap Times -->
+                <div id="lapTimesPanel" class="panel hidden">
+                    <h2>🚩 Lap Times (<span id="lapCount">0</span>)</h2>
+                    <div id="lapTimesList" class="times-list"></div>
+                </div>
+
+                <!-- Split Times -->
+                <div id="splitTimesPanel" class="panel hidden">
+                    <h2>✂️ Split Times (<span id="splitCount">0</span>)</h2>
+                    <div id="splitTimesList" class="times-list"></div>
+                </div>
+
+                <!-- Saved Sessions -->
+                <div id="sessionsPanel" class="panel">
+                    <h2>💾 Saved Sessions (<span id="sessionCount">0</span>)</h2>
+                    <div id="sessionsList" class="times-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Help -->
+        <div class="shortcuts-help">
+            <div class="shortcut"><kbd>Space</kbd> Start/Pause</div>
+            <div class="shortcut"><kbd>R</kbd> Reset</div>
+            <div class="shortcut"><kbd>L</kbd> Lap</div>
+            <div class="shortcut"><kbd>S</kbd> Split</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
